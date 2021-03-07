@@ -1,30 +1,35 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view/>
+  <Selector selectName="countries" :options="this.selectData.countries" label="Выберите страну" @getValue="gotValue"  />
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import data from './assets/data.json'
+import Selector from './components/blocks/select/Selector.vue'
 
-#nav {
-  padding: 30px;
+export default {
+  components: {
+    Selector
+  },
+  data () {
+    return {
+      selectData: data
+    }
+  },
+  methods: {
+    gotValue () {
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
     }
   }
 }
+
+</script>
+
+<style lang="scss">
+  #app {
+    background: #3748AA;
+    width: 100%;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+  }
 </style>

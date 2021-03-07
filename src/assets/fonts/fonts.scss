@@ -1,0 +1,45 @@
+@font-face {
+  font-family: "Roboto";
+  src: url('./Roboto-Light/Roboto-Light.eot'); /* IE9 Compat Modes */
+  src: url('./Roboto-Light/Roboto-Light.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('./Roboto-Light/Roboto-Light.woff') format('woff'), /* Pretty Modern Browsers */
+       url('./Roboto-Light/Roboto-Light.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('./Roboto-Light/Roboto-Light.svg') format('svg'); /* Legacy iOS */
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url('./Roboto-Regular/Roboto-Regular.eot'); /* IE9 Compat Modes */
+  src: url('./Roboto-Regular/Roboto-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('./Roboto-Regular/Roboto-Regular.woff') format('woff'), /* Pretty Modern Browsers */
+       url('./Roboto-Regular/Roboto-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('./Roboto-Regular/Roboto-Regular.svg') format('svg'); /* Legacy iOS */
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url('./Roboto-Medium/Roboto-Medium.eot'); /* IE9 Compat Modes */
+  src: url('./Roboto-Medium/Roboto-Medium.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('./Roboto-Medium/Roboto-Medium.woff') format('woff'), /* Pretty Modern Browsers */
+       url('./Roboto-Medium/Roboto-Medium.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('./Roboto-Medium/Roboto-Medium.svg') format('svg'); /* Legacy iOS */
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./MaterialIcons/MaterialIcons-Regular.eot'); /* For IE6-8 */
+  src: local('MaterialIcons'),
+    local('MaterialIcons'),
+    url('./MaterialIcons/MaterialIcons-Regular.woff2') format('woff2'),
+    url('./MaterialIcons/MaterialIcons-Regular.woff') format('woff'),
+    url('./MaterialIcons/MaterialIcons-Regular.svg') format('svg'),
+    url('./MaterialIcons/MaterialIcons-Regular.ttf') format('truetype');
+}
