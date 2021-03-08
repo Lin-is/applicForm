@@ -1,17 +1,19 @@
 .applicForm__container {
-  background: #3748AA;
   width: 100%;
   max-width: 1360px;
   margin: 0 auto;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  margin-top: 100px;
+  margin-bottom: 100px;
 }
 
 .applicForm__stepContainer {
   width: 100%;
   padding: 0 126px;
   box-sizing: border-box;
+  background: #3748AA;
 }
 
 .applicForm__stepContainer_step1 {
@@ -26,6 +28,8 @@
   font-size: 40px;
   line-height: 50px;
   color: #FFFFFF;
+  margin: 0;
+  padding: 0;
   margin-bottom: 67px;
   box-sizing: border-box;
 }
@@ -121,4 +125,122 @@
   color: #FF6700;
   margin: 0;
   padding: 0;
+}
+
+
+.applicForm__stepContainer_step2 {
+
+  border-top: 1px solid white;
+  padding-top: 90px;
+
+  //todo delete
+  margin-top: 100px;
+
+  .appplicForm__stepHeader {
+    margin-bottom: 48.5px;
+  }
+
+  .applicForm__optionsLine {
+    justify-content: space-between;
+  }
+
+  .applicForm__optionContainer {
+    width: auto;
+  }
+  .applicForm__optionsLine:nth-child(1) .applicForm__optionContainer:nth-child(2) {
+    margin-left: 0px;
+  }
+  .applicForm__resultsContainer {
+    flex-direction: column;
+    margin-bottom: 156px;
+  }
+
+  .applicForm__outputArea {
+    margin-bottom: 44px;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    padding-top: 40px;
+    box-sizing: border-box;
+  }
+  .appplicForm__costContainer {
+    max-width: 360px;
+    justify-self: flex-start;
+    align-self: flex-start;
+    margin-bottom: 40.5px;
+    justify-content: flex-start;
+  }
+  .applicForm__prelimText {
+    font-size: 16px;
+    line-height: 19px;
+    margin-right: 10px;
+    width: 220px;
+  }
+}
+
+.applicForm__userName {
+  display: inline-block;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  color: #FFFFFF;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  padding-bottom: 7px;
+  border-bottom: 3px solid white;
+  margin-bottom: 22px;
+}
+
+.applicForm__prevInfoContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.applicForm__infoTitle {
+  display: inline-block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 15px;
+  color: #FFFFFF;
+  margin-bottom: 5px;
+}
+
+.applicForm__infoCell {
+  width: 225px;
+  height: 50px;
+  box-sizing: border-box;
+  margin-bottom: 27.5px;
+}
+
+.applicForm__prevInfo {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 18px;
+  color: #A5AFEC;
+}
+
+.applicForm__buttonsContainer {
+  width: 100%;
+  justify-content: flex-end;
+  display: flex;
+  flex-direction: row;
+}
+
+.applicForm__btnContainer {
+  margin-right: 27.5px;
+  box-sizing: border-box;
 }
