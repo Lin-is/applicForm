@@ -1,0 +1,67 @@
+.button__btnElem {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+
+  height: 61.17px;
+  min-width: 189.76px;
+
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0px 20px 40px #0B1A73;
+  cursor: pointer;
+
+  &::after {
+    content: '';
+
+    position: absolute; 
+    top: 10px;
+
+    width: 40px;
+    height: 40px;
+
+    font-family: Material Icons;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #FFFFFF;
+  }
+}
+
+.button__innerText {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 25px;
+
+  color: #FFFFFF;
+}
+
+.button__btnElem_next {
+  background: #0BAF4F;
+  border: 1px solid transparent;
+  &::after {
+    content: 'keyboard_arrow_right';
+    right: 0px;
+  }
+}
+
+.button__btnElem_prev {
+  background: #3748AA;
+  border: 1px solid #7182ED;
+
+  &::after {
+    content: 'keyboard_arrow_right';
+    left: 6.8px;
+    transform: rotate(180deg);
+  }
+}
