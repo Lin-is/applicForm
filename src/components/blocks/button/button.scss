@@ -1,12 +1,15 @@
 .button__btnElem {
   position: relative;
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-sizing: border-box;
 
   height: 61.17px;
   min-width: 189.76px;
+  width: 189.76px;
+
+  box-sizing: border-box;
 
   border: none;
   border-radius: 4px;
