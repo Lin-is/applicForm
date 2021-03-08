@@ -46,6 +46,8 @@
   align-items: flex-end;
   box-sizing: border-box;
   &:nth-child(1) {
+    position: relative;
+    z-index: 100;
     justify-content: start;
     margin-bottom: 32px;
 

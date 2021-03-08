@@ -8,11 +8,11 @@
         <div class="applicForm__optionsLine">
 
           <div class="applicForm__optionContainer applicForm__optionContainer_countries">
-            <Selector selectName="countries" :options="this.selectData.countries" label="Выберите страну" @getValue="gotSelectValue"  />
+            <Selector selectName="countries" :options="this.selectData.countries" label="Выберите страну" @getValue="getCountrie"  />
           </div>
 
           <div class="applicForm__optionContainer applicForm__optionContainer_types">
-            <Selector selectName="types" :options="this.selectData.types" label="Тип визы" @getValue="gotSelectValue"  />
+            <Selector selectName="types" :options="this.selectData.types" label="Тип визы" @getValue="getTypes"  />
           </div>
 
         </div>
@@ -20,16 +20,16 @@
         <div class="applicForm__optionsLine">
 
           <div class="applicForm__optionContainer applicForm__optionContainer_entryDate">
-            <Datepicker datepickName="entryDate" datepickLabel="Въезд" />
-            <Datepicker datepickName="departureDate" datepickLabel="Выезд" />
+            <Datepicker datepickName="entryDate" datepickLabel="Въезд" @getValue="getEntryDate" />
+            <Datepicker datepickName="departureDate" datepickLabel="Выезд" @getValue="getDepartDate" />
           </div>
 
           <div class="applicForm__optionContainer applicForm__optionContainer_try">
-            <Selector selectName="try" :options="this.selectData.try" label="Количество заездов" @getValue="gotSelectValue"  />
+            <Selector selectName="try" :options="this.filteredTry" label="Количество заездов" @getValue="getTry"  />
           </div>
 
           <div class="applicForm__optionContainer applicForm__optionContainer_timespent">
-            <Selector selectName="timespent" :options="this.selectData.timespent" label="Время обработки" @getValue="gotSelectValue"  />
+            <Selector selectName="timespent" :options="this.filteredTimespent" label="Время обработки" @getValue="getTimespent"  />
           </div>
 
         </div>
@@ -43,7 +43,7 @@
               Предварительная<br/>
               стоимость:
             </p>
-            <p class="applicForm__prelimTotal">€10.99</p>
+            <p class="applicForm__prelimTotal">{{ this.collectedInfo.cost }}</p>
           </div>
         </div>
         <Button btnTitle="Продолжить" btnIsNext="true"/>
@@ -62,19 +62,19 @@
         <div class="applicForm__optionsLine">
 
           <div class="applicForm__optionContainer applicForm__optionContainer_name">
-            <Input label="Имя" placeholder="Введите имя" name="name" @getValue="gotSelectValue"  />
+            <Input label="Имя" placeholder="Введите имя" name="name" @getValue="getName"  />
           </div>
 
           <div class="applicForm__optionContainer applicForm__optionContainer_surname">
-            <Input label="Фамилия" placeholder="Введите фамилию" name="surname" @getValue="gotSelectValue"  />
+            <Input label="Фамилия" placeholder="Введите фамилию" name="surname" @getValue="getSurname"  />
           </div>
 
           <div class="applicForm__optionContainer applicForm__optionContainer_birthDate">
-            <Datepicker datepickName="birthDate" datepickLabel="Дата рождения" />
+            <Datepicker datepickName="birthDate" datepickLabel="Дата рождения" @getValue="getBirthDate" />
           </div>
 
           <div class="applicForm__optionContainer applicForm__optionContainer_citizenship">
-            <Selector selectName="citizenship" :options="this.citizenshipList" label="Гражданство" @getValue="gotSelectValue"  />
+            <Selector selectName="citizenship" :options="this.citizenshipList" label="Гражданство" @getValue="getCitizenship"  />
           </div>
 
         </div>
@@ -98,7 +98,7 @@
               Предварительная<br/>
               стоимость:
             </p>
-            <p class="applicForm__prelimTotal">€10.99</p>
+            <p class="applicForm__prelimTotal">{{ this.collectedInfo.cost }}</p>
           </div>
         </div>
         <div class="applicForm__buttonsContainer">
@@ -141,33 +141,94 @@ export default {
         entryCountry: null,
         visaType: null,
         entryDate: null,
-        departureDate: null,
-        entrancesNumber: null,
+        departDate: null,
+        try: null,
         timespent: null,
-        cost: null
+        cost: '€0'
       }
     }
   },
   methods: {
-    gotSelectValue () {
-
+    filterOptions (array) {
+      const country = this.collectedInfo.entryCountry ? this.collectedInfo.entryCountry.id : 'RU'
+      const filteredArr = array.filter(item => item.relative === country)
+      return filteredArr
     },
-    gotInputValue () {
-
+    getCountrie (val) {
+      this.collectedInfo.entryCountry = val
+      this.calcSum()
+    },
+    getTypes (val) {
+      this.collectedInfo.visaType = val
+      this.calcSum()
+    },
+    getTry (val) {
+      this.collectedInfo.try = val
+      this.calcSum()
+    },
+    getTimespent (val) {
+      this.collectedInfo.timespent = val
+      this.calcSum()
+    },
+    getCitizenship (val) {
+      this.collectedInfo.citizenship = val
+    },
+    getEntryDate (val) {
+      this.collectedInfo.entryDate = val
+    },
+    getDepartDate (val) {
+      this.collectedInfo.departDate = val
+    },
+    getBirthDate (val) {
+      this.collectedInfo.birthDate = val
+    },
+    getName (val) {
+      let newVal = val
+      if (val) {
+        val.trim()
+        newVal = val[0].toUpperCase()
+        newVal += val.slice(1).toLowerCase()
+      }
+      this.collectedInfo.name = newVal
+    },
+    getSurname (val) {
+      let newVal = val
+      if (val) {
+        val.trim()
+        newVal = val[0].toUpperCase()
+        newVal += val.slice(1).toLowerCase()
+      }
+      this.collectedInfo.surname = newVal
+    },
+    calcSum () {
+      let fullSum = 0
+      if (this.collectedInfo.visaType) {
+        fullSum += +this.collectedInfo.visaType.price.replace(/,/, '.')
+      }
+      if (this.collectedInfo.try) {
+        fullSum += +this.collectedInfo.try.price.replace(/,/, '.')
+      }
+      if (this.collectedInfo.timespent) {
+        fullSum += +this.collectedInfo.timespent.price.replace(/,/, '.')
+      }
+      this.collectedInfo.cost = '€' + fullSum
     }
   },
   computed: {
-    filteredTypes () {
-      return [{}]
+    filteredTry () {
+      return this.filterOptions(this.selectData.try)
     },
     filteredTimespent () {
-      return [{}]
-    },
-    preliminaryCost () {
-      return ''
+      return this.filterOptions(this.selectData.timespent)
     },
     userName () {
-      const name = 'Пользователь'
+      let name = 'Пользователь'
+      if (this.collectedInfo.name) {
+        name = this.collectedInfo.name
+      }
+      if (this.collectedInfo.surname) {
+        name += ' ' + this.collectedInfo.surname[0].toUpperCase() + '.'
+      }
       return name
     }
   }

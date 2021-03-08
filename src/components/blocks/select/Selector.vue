@@ -8,12 +8,30 @@
         :class="{'selector__input_active': this.inputIsActive}"
         type="text"
         ref="selectInput"
-        :value="this.valueName"
+        :value="this.value.name"
         :placeholder="this.label"
         @click="this.initSelection"
         @focus="this.$refs.select.focus()"
         readonly
       >
+      <div
+        class="selector__labelsContainer"
+        :class="{'hidden': !this.inputIsActive}"
+        ref="optionLabels"
+      >
+          <label
+            class="selector__optionLabel"
+            :class="{'selector__optionLabel_active': this.value === option.id}"
+            v-for="(option, index) in this.options"
+            :key="index"
+            @click="this.selectOption"
+            @keypress.enter="this.selectOption"
+            :value="option.id"
+            :id="'label-' + this.selectName + '-' + option.id"
+          >
+            {{ option.name }}
+          </label>
+      </div>
       <label class="selector__inputLabel" :for="'selector__input-' + this.selectName" />
       <select
         ref="select"
@@ -32,24 +50,6 @@
           :key="index"
         />
       </select>
-    </div>
-    <div
-      class="selector__labelsContainer"
-      :class="{'hidden': !this.inputIsActive}"
-      ref="optionLabels"
-    >
-        <label
-          class="selector__optionLabel"
-          :class="{'selector__optionLabel_active': this.value === option.id}"
-          v-for="(option, index) in this.options"
-          :key="index"
-          @click="this.selectOption"
-          @keypress.enter="this.selectOption"
-          :value="option.id"
-          :id="'label-' + this.selectName + '-' + option.id"
-        >
-          {{ option.name }}
-        </label>
     </div>
   </div>
 </template>
@@ -72,31 +72,28 @@ export default {
   },
   data () {
     return {
-      value: null,
+      value: {
+        name: null
+      },
       inputIsActive: false
     }
   },
   computed: {
-    valueName () {
-      const arr = this.options
-      let name = ''
-      arr.forEach(option => {
-        if (option.id === this.value) {
-          name = option.name
-        }
-      })
-      return name
-    }
   },
   methods: {
     emitChange () {
       this.$emit('get-value', this.value)
     },
+    findOption (id) {
+      const option = this.options.find(opt => opt.id === id)
+      return option
+    },
     selectOption (event) {
       const [,, optionId] = event.target.id.split('-')
-      this.value = optionId
+      this.value = this.findOption(optionId)
       this.inputIsActive = false
       this.$refs.select.focus()
+      this.emitChange()
     },
     initSelection () {
       this.$refs.select.focus()

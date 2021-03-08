@@ -3,7 +3,7 @@
     <label class="input__label" for="">{{ this.label }}</label>
     <input
       class="input__inputElem"
-      @change="this.$emit('get-value', {name: this.name, value: this.value})"
+      @change="this.emitChange"
       :name="this.name"
       v-model="value"
       type="text"
@@ -31,6 +31,11 @@ export default {
   data () {
     return {
       value: null
+    }
+  },
+  methods: {
+    emitChange () {
+      this.$emit('get-value', this.value)
     }
   }
 }
