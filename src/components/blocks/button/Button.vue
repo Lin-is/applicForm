@@ -16,7 +16,7 @@ export default {
       required: true
     },
     btnIsNext: {
-      type: Boolean,
+      type: String,
       required: true
     }
   },

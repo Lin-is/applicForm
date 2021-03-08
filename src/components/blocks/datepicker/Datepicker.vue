@@ -1,7 +1,7 @@
 <template>
   <div class="datepicker__mainContainer">
     <label class="datepicker__label" :for="'datepicker-id-' + this.datepickName">{{ this.datepickLabel }}</label>
-    <input class="datepicker__input" type="date" :id="'datepicker-id-' + this.datepickName" v-model="this.value" @change="this.emitChange" >
+    <input class="datepicker__input" :min="this.min" type="date" :id="'datepicker-id-' + this.datepickName" v-model="this.value" @change="this.emitChange" >
   </div>
 </template>
 
@@ -15,6 +15,9 @@ export default {
     datepickName: {
       type: String,
       required: true
+    },
+    min: {
+      type: Date
     }
   },
   data () {

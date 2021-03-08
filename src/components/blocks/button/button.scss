@@ -56,6 +56,9 @@
     content: 'keyboard_arrow_right';
     right: 0px;
   }
+  &:hover {
+    background: #089442;
+  }
 }
 
 .button__btnElem_prev {
@@ -66,5 +69,9 @@
     content: 'keyboard_arrow_right';
     left: 6.8px;
     transform: rotate(180deg);
+  }
+  &:hover {
+    background: #7182ED;
+    border-color: #3748AA;
   }
 }
